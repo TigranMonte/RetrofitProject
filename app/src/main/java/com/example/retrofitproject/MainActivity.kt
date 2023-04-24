@@ -8,6 +8,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import com.example.retrofitproject.retrofit.ProductApi
 import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -19,14 +21,21 @@ class MainActivity : AppCompatActivity() {
         val tv = findViewById<TextView>(R.id.tv)
         val b = findViewById<Button>(R.id.btnGet)
 
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .build()
+
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://dummyjson.com")
+            .baseUrl("https://dummyjson.com").client(client)
             .addConverterFactory(GsonConverterFactory.create()).build()
         val productApi = retrofit.create(ProductApi::class.java)
 
         b.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                val product = productApi.getProductById(3)
+                val product = productApi.getProductById(7)
                 runOnUiThread {
                     tv.text = product.title
                 }
