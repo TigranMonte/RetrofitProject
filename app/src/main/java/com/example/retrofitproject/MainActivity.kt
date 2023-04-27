@@ -13,6 +13,7 @@ import com.example.retrofitproject.retrofit.AuthRequest
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import com.example.retrofitproject.retrofit.MainApi
+import com.example.retrofitproject.retrofit.User
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
@@ -31,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.title = "Guest"
+
         adapter = ProductAdapter()
         binding.rcView.layoutManager = LinearLayoutManager(this)
         binding.rcView.adapter = adapter
@@ -47,6 +50,20 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create()).build()
         val mainApi = retrofit.create(MainApi::class.java)
 
+
+        var user: User? = null
+        CoroutineScope(Dispatchers.IO).launch {
+            user = mainApi.auth(
+                AuthRequest(
+                    "kminchelle",
+                    "0lelplR"
+                )
+            )
+            runOnUiThread {
+                supportActionBar?.title = user?.firstName
+            }
+        }
+
         binding.sv.setOnQueryTextListener(object : OnQueryTextListener{
 
             // ввел слово в поиске нажал найти
@@ -57,7 +74,7 @@ class MainActivity : AppCompatActivity() {
             // поиск проходит с каждым изменением в строке
             override fun onQueryTextChange(text: String?): Boolean {
                 CoroutineScope(Dispatchers.IO).launch {
-                    val list = text?.let { mainApi.getProductsByName(it) }
+                    val list = text?.let { mainApi.getProductsByNameAuth(user?.token ?: "",it) }
                     runOnUiThread {
                         binding.apply {
                             adapter.submitList(list?.products)
