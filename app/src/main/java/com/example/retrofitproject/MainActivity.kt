@@ -21,7 +21,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
-
     private lateinit var adapter: ProductAdapter
     lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,12 +51,10 @@ class MainActivity : AppCompatActivity() {
         var user: User? = null
 
         binding.sv.setOnQueryTextListener(object : OnQueryTextListener{
-
             // ввел слово в поиске нажал найти
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return true
             }
-
             // поиск проходит с каждым изменением в строке
             override fun onQueryTextChange(text: String?): Boolean {
                 CoroutineScope(Dispatchers.IO).launch {

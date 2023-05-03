@@ -22,7 +22,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class LoginFragment : Fragment() {
-
     private lateinit var binding: FragmentLoginBinding
     private lateinit var mainApi: MainApi
     private val viewModel: LoginViewModel by activityViewModels()
@@ -33,7 +32,6 @@ class LoginFragment : Fragment() {
     ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,7 +42,6 @@ class LoginFragment : Fragment() {
         binding.apply {
             bNext.setOnClickListener {
                 findNavController().navigate(R.id.action_loginFragment_to_productsFragment)
-
             }
             bSignIn.setOnClickListener {
                 auth(
@@ -66,7 +63,6 @@ class LoginFragment : Fragment() {
             .addConverterFactory(GsonConverterFactory.create()).build()
         mainApi = retrofit.create(MainApi::class.java)
     }
-
     private fun auth(authRequest: AuthRequest){
         CoroutineScope(Dispatchers.IO).launch {
             val response = mainApi.auth(authRequest)

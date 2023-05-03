@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.retrofitproject.databinding.ContentBasicBinding
 
 class BasicActivity : AppCompatActivity() {
-
     private lateinit var binding: ContentBasicBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
