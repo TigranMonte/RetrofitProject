@@ -64,7 +64,6 @@ class LoginFragment : Fragment() {
             .addConverterFactory(GsonConverterFactory.create()).build()
         mainApi = retrofit.create(MainApi::class.java)
     }
-
     private fun auth(authRequest: AuthRequest){
         CoroutineScope(Dispatchers.IO).launch {
             val response = mainApi.auth(authRequest)
