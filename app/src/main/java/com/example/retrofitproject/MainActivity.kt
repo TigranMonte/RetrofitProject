@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create()).build()
         val mainApi = retrofit.create(MainApi::class.java)
 
-
         var user: User? = null
 
         binding.sv.setOnQueryTextListener(object : OnQueryTextListener{
