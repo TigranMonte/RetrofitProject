@@ -19,7 +19,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ProductsFragment : Fragment() {
-
     private lateinit var adapter: ProductAdapter
     private lateinit var binding: FragmentProductsBinding
     private lateinit var mainApi: MainApi
