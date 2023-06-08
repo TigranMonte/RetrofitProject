@@ -21,6 +21,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginFragment : Fragment() {
+
     private lateinit var binding: FragmentLoginBinding
     private lateinit var mainApi: MainApi
     private val viewModel: LoginViewModel by activityViewModels()
