@@ -33,6 +33,7 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -49,6 +50,7 @@ class LoginFragment : Fragment() {
             }
         }
     }
+
     private fun initRetrofit(){
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
