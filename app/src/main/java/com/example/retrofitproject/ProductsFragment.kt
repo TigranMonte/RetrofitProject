@@ -19,6 +19,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ProductsFragment : Fragment() {
+
     private lateinit var adapter: ProductAdapter
     private lateinit var binding: FragmentProductsBinding
     private lateinit var mainApi: MainApi
@@ -31,6 +32,7 @@ class ProductsFragment : Fragment() {
         binding = FragmentProductsBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRetrofit()
