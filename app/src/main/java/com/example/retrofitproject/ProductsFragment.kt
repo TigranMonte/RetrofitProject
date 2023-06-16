@@ -45,7 +45,6 @@ class ProductsFragment : Fragment() {
             }
         }
     }
-
     private fun initRetrofit(){
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
