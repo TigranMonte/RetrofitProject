@@ -59,7 +59,6 @@ class ProductsFragment : Fragment() {
             .addConverterFactory(GsonConverterFactory.create()).build()
         mainApi = retrofit.create(MainApi::class.java)
     }
-
     private fun initRcView() = with(binding){
         adapter = ProductAdapter()
         rcView.layoutManager = LinearLayoutManager(context)
