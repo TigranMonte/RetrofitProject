@@ -19,7 +19,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ProductsFragment : Fragment() {
-
     private lateinit var adapter: ProductAdapter
     private lateinit var binding: FragmentProductsBinding
     private lateinit var mainApi: MainApi
@@ -46,7 +45,6 @@ class ProductsFragment : Fragment() {
             }
         }
     }
-
     private fun initRetrofit(){
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -60,7 +58,6 @@ class ProductsFragment : Fragment() {
             .addConverterFactory(GsonConverterFactory.create()).build()
         mainApi = retrofit.create(MainApi::class.java)
     }
-
     private fun initRcView() = with(binding){
         adapter = ProductAdapter()
         rcView.layoutManager = LinearLayoutManager(context)
