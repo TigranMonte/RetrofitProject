@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
                 )
                 binding.temp.text = model.current.temp_c.toString()
                 binding.date.text = model.location.localtime
+                binding.additionalInfo.text = model.location.name
                 // add more info and text view here
             }
         }
